@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case_2</title>
+</head>
+<body>
+    <script>
+        "use strict";
+//Case_2
+        //create function generate graph
+        function generateGraph(graphSize){
+            let p = 0.5;
+            let graph = [];
+
+            for (let i = 0; i < graphSize; i++) {
+        graph[i] = []; 
+        for (var j = 0; j < graphSize; j++) {
+          graph[i][j] = 0
+        }
+      }
+
+   
+      for (let i = 0; i < graphSize; i++) {
+        for (let j = i + 1; j < graphSize; j++) {
+                  if (Math.random() < p){
+                    graph[i][j] = 1;
+                    graph[j][i] = 1;
+                  }
+                }
+            }
+            return graph;
+
+        }
+      //variable declaration 
+        let graphSize = +prompt("Введите размерность граффа", 5);    
+        let visited = [];
+        let queue = [];
+        let current;
+        let a = generateGraph(graphSize);
+
+      //graph depth exploration   
+      queue.push(0);
+
+      while (queue.length != 0){
+        do{
+            current = queue.pop();
+        }while(visited.indexOf(current) != -1)
+        if (current == undefined) break;
+
+        visited.push(current)
+
+        for (let j = a[current].length - 1; j >= 0; j--){
+            if (a[current][j] != 0){
+                queue.push(j)
+            }
+        };
+      }
+      
+      console.log(visited);
+
+
+    </script>
+</body>
+</html>

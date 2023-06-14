@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case_1</title>
+</head>
+<body>
+    <script>
+        "use strict";
+//Case 1
+    //variable declaration 
+        let graph = [];
+        let graphSize = +prompt("Введите размерность граффа");    
+        let firstPeak = +prompt("Введите первую вершину");
+        let secondPeak = +prompt("Введите вторую вершину");
+
+//Creating a random graph 
+        for (let i = 0; i < graphSize; i++) {
+        graph[i] = []; 
+        for (let j = 0; j < graphSize; j++) {
+          graph[i][j] = Math.round(Math.random()); 
+        }
+      };
+
+//creating symmetry    
+      for (let i = 0; i < graphSize; i++) {
+        for (let j = 0; j < graphSize; j++) {
+                    if(graph[i][j] > graph[j][i]){
+                        graph[j][i] = graph[i][j];
+                    }
+                
+                    else if (i == j){
+                        graph[i][j]= 0;
+                    }
+                }
+            };
+
+//edge search
+
+            console.log(graph);
+      if(graph[firstPeak-1][secondPeak-1] == 1 && graph[secondPeak-1][firstPeak-1] == 1){
+        console.log("Между вершиной", firstPeak, "и вершиной", secondPeak, "есть ребро")
+      }
+      else{
+        console.log("Между вершиной", firstPeak, "и вершиной", secondPeak, "нет ребра")
+      };
+    </script>
+</body>
+</html>
